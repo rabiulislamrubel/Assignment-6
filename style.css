@@ -9,7 +9,9 @@
 .gallery-header {
   display: none;
 }
-
+.test {
+  display: none;
+}
 .slider-item {
   display: none;
 }
