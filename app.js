@@ -25,10 +25,11 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-
+  loadingSpinner();
 }
 
 const getImages = (query) => {
+  loadingSpinner();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -118,14 +119,6 @@ const changeSlide = (index) => {
   items[index].style.display = "block"
 }
 
-// searchBtn.addEventListener('click', function () {
-//   document.querySelector('.main').style.display = 'none';
-//   clearInterval(timer);
-//   const search = document.getElementById('search');
-//   getImages(search.value)
-//   sliders.length = 0;
-// })
-
 var searchInput = document.getElementById('search');
 searchInput.addEventListener("keypress", function(event) {
   if (event.keyCode === 13) {
@@ -134,7 +127,7 @@ searchInput.addEventListener("keypress", function(event) {
   }
 });
 
-const testFunc = () =>{
+const btnEnterPress = () =>{
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
@@ -145,3 +138,8 @@ const testFunc = () =>{
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+const loadingSpinner = () => {
+  const spinner = document.getElementById('loading-spinner');
+  spinner.classList.toggle('d-none');
+}
