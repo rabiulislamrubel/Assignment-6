@@ -44,11 +44,17 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.toggle('added');
+
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
   }else {
-    sliders.splice(0, 1);
+    sliders.findIndex(function(value , ind){
+      if(ind === item){
+        sliders.splice(ind, 1);
+      }
+    })
   }
 }
 
